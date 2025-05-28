@@ -1,55 +1,64 @@
-# TaskNexus - Intelligent Task Management Platform
+# TaskNexus
 
-A modern, responsive frontend implementation for TaskNexus, built with HTML and CSS.
+TaskNexus is a modern, responsive web application for intelligent task management and efficiency tracking. Built with HTML, CSS, and JavaScript, it provides a clean and intuitive interface for managing tasks and projects.
 
-## 🚀 Features
+## Features
 
-- Responsive design that works on all devices
-- Modern and clean user interface
-- Role-adaptive dashboard
-- Smart task composition
-- Insight visualization
-- Mobile-first approach
+- User authentication using localStorage
+- Task creation and management
+- Priority-based task organization
+- Efficiency tracking and reporting
+- Responsive design for all devices
+- Modern and intuitive user interface
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-tasknexus/
+TaskNexus/
 ├── assets/
 │   ├── css/
-│   │   ├── styles.css
-│   │   └── components/
-│   └── images/
+│   │   └── styles.css
+│   └── js/
+│       └── main.js
 ├── pages/
-│   ├── login.html
 │   ├── dashboard.html
 │   ├── task-composer.html
-│   └── insights.html
+│   ├── insights.html
+│   ├── login.html
+│   └── register.html
 └── index.html
 ```
 
-## 🎨 Design System
-
-- **Typography**: Poppins, Inter, and Roboto
-- **Color Palette**: Soft blues, subtle purples, clean whites, and greys
-- **Layout**: CSS Grid and Flexbox
-- **Components**: Cards, modals, buttons with smooth transitions
-
-## 🛠️ Setup
+## Getting Started
 
 1. Clone the repository
-2. Open any HTML file in your browser to view the pages
-3. No build process required - pure HTML/CSS implementation
+2. Open `index.html` in your web browser
+3. Register a new account or login with existing credentials
 
-## 📱 Responsive Design
+## Technologies Used
 
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (< 768px)
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- LocalStorage for data persistence
 
-## 🔜 Future Enhancements
+## Browser Support
 
-- JavaScript functionality
-- Backend integration
-- Real-time updates
-- User authentication
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Security Features
+
+- Client-side form validation
+- Secure password handling
+- Protected routes using localStorage authentication
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request

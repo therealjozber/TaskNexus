@@ -85,6 +85,20 @@
             color: var(--grey-600);
         }
 
+        .error-msg {
+            color: #DC2626;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            display: none;
+        }
+
+        .success-msg {
+            color: #16A34A;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            display: none;
+        }
+
         @media (max-width: 640px) {
             .register-card {
                 padding: var(--spacing-lg);
@@ -104,36 +118,39 @@
                 <p class="register-tagline">Create your account to get started</p>
             </div>
             
-            <form class="register-form">
+            <div id="error-message" class="error-msg"></div>
+            <div id="success-message" class="success-msg"></div>
+            
+            <form class="register-form" id="registerForm" novalidate>
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="first-name">First Name</label>
-                        <input type="text" id="first-name" class="form-input" placeholder="Enter first name" required>
+                        <input type="text" id="first-name" name="first_name" class="form-input" placeholder="Enter first name" required>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="last-name">Last Name</label>
-                        <input type="text" id="last-name" class="form-input" placeholder="Enter last name" required>
+                        <input type="text" id="last-name" name="last_name" class="form-input" placeholder="Enter last name" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="email">Email</label>
-                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Enter your email" required>
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label" for="password">Password</label>
-                    <input type="password" id="password" class="form-input" placeholder="Create a password" required>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Create a password" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" class="form-input" placeholder="Confirm your password" required>
+                    <input type="password" id="confirm-password" name="confirm_password" class="form-input" placeholder="Confirm your password" required>
                 </div>
 
                 <div class="terms-checkbox">
-                    <input type="checkbox" id="terms" required>
+                    <input type="checkbox" id="terms" name="terms" required>
                     <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
                 </div>
                 
@@ -145,5 +162,79 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+            
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                errorMessage.textContent = 'Please fill in all fields.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (!terms) {
+                errorMessage.textContent = 'You must agree to the terms.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Check if email already exists
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.some(user => user.email === email)) {
+                errorMessage.textContent = 'Email already registered.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Save user
+            users.push({
+                firstName,
+                lastName,
+                email,
+                password // Note: In a real app, never store passwords in plain text
+            });
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Show success message
+            successMessage.textContent = 'Registration successful! You can now sign in.';
+            successMessage.style.display = 'block';
+            
+            // Clear form
+            this.reset();
+            
+            // Redirect to login after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        });
+    </script>
 </body>
 </html> 

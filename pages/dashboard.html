@@ -182,8 +182,8 @@
             <header class="header">
                 <h1>Dashboard</h1>
                 <div class="user-menu">
-                    <div class="user-avatar">JD</div>
-                    <a href="login.html" class="btn btn-secondary">Logout</a>
+                    <div class="user-avatar" id="userAvatar">JD</div>
+                    <button onclick="logout()" class="btn btn-secondary">Logout</button>
                 </div>
             </header>
 
@@ -218,5 +218,31 @@
             </div>
         </main>
     </div>
+
+    <script>
+        // Check if user is logged in
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Get user info
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user) {
+                // Update user avatar with initials
+                const initials = (user.firstName[0] + user.lastName[0]).toUpperCase();
+                document.getElementById('userAvatar').textContent = initials;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html> 
