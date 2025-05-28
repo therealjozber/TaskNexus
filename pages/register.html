@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - TaskNexus</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <style>
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary-blue), var(--secondary-purple));
+            padding: var(--spacing-md);
+        }
+
+        .register-card {
+            width: 100%;
+            max-width: 500px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .register-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .register-tagline {
+            color: var(--grey-600);
+            font-size: 1rem;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            color: var(--grey-600);
+            font-size: 0.875rem;
+        }
+
+        .register-footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .register-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .terms-checkbox input {
+            margin-top: 0.25rem;
+        }
+
+        .terms-checkbox label {
+            font-size: 0.875rem;
+            color: var(--grey-600);
+        }
+
+        @media (max-width: 640px) {
+            .register-card {
+                padding: var(--spacing-lg);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <div class="register-logo">TaskNexus</div>
+                <p class="register-tagline">Create your account to get started</p>
+            </div>
+            
+            <form class="register-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="first-name">First Name</label>
+                        <input type="text" id="first-name" class="form-input" placeholder="Enter first name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="last-name">Last Name</label>
+                        <input type="text" id="last-name" class="form-input" placeholder="Enter last name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="form-input" placeholder="Confirm your password" required>
+                </div>
+
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Create Account</button>
+            </form>
+            
+            <div class="register-footer">
+                <p>Already have an account? <a href="login.html">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
