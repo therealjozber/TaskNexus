@@ -3,512 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskNexus - Intelligent Task Management</title>
+    <title>TaskNexus - Task Management Made Simple</title>
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Modern SaaS Styling */
-        :root {
-            --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-            --gradient-secondary: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            background: var(--gradient-primary);
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px; /* Add space for navbar */
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-xl);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xl);
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-text {
-            color: var(--white);
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: var(--spacing-md);
-            line-height: 1.1;
-            background: linear-gradient(to right, #ffffff, #e2e8f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            margin-bottom: var(--spacing-lg);
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: var(--spacing-md);
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: var(--white);
-            color: var(--primary-blue);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-strong);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .hero-image {
-            position: relative;
-            transform: perspective(1000px) rotateY(-5deg);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-image:hover {
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--shadow-strong);
-        }
-
-        /* Features Section */
-        .features {
-            padding: var(--spacing-xxl) var(--spacing-xl);
-            background: var(--white);
-            position: relative;
-        }
-
-        .features::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: var(--gradient-primary);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto var(--spacing-xxl);
-            padding-top: var(--spacing-xl);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--grey-800);
-            margin-bottom: var(--spacing-md);
-            font-weight: 700;
-        }
-
-        .section-subtitle {
-            color: var(--grey-600);
-            font-size: 1.125rem;
-            line-height: 1.6;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: var(--spacing-xl);
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-strong);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-secondary);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--spacing-md);
-            color: var(--white);
-            font-size: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            color: var(--grey-800);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-        }
-
-        .feature-description {
-            color: var(--grey-600);
-            line-height: 1.6;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: var(--spacing-xxl) var(--spacing-xl);
-            background: var(--white);
-            position: relative;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--white);
-            padding: var(--spacing-xl);
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-strong);
-        }
-
-        .pricing-header {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .pricing-title {
-            font-size: 1.5rem;
-            color: var(--grey-800);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-        }
-
-        .pricing-price {
-            font-size: 3rem;
-            color: var(--primary-blue);
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .pricing-period {
-            color: var(--grey-600);
-            font-size: 1rem;
-        }
-
-        .pricing-features {
-            margin: var(--spacing-lg) 0;
-            text-align: left;
-        }
-
-        .pricing-feature {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-sm);
-            color: var(--grey-700);
-        }
-
-        .pricing-feature i {
-            color: var(--primary-blue);
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: var(--spacing-xxl) var(--spacing-xl);
-            background: var(--grey-100);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonials-grid {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .testimonials-track {
-            display: flex;
-            transition: transform 0.5s ease;
-            gap: var(--spacing-md);
-        }
-
-        .testimonial-card {
-            min-width: 220px;
-            flex: 0 0 auto;
-            background: var(--white);
-            padding: var(--spacing-md);
-            border-radius: 15px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s ease;
-        }
-
-        .testimonial-content {
-            font-size: 0.85rem;
-            line-height: 1.4;
-            margin-bottom: var(--spacing-sm);
-            color: var(--grey-700);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .testimonial-avatar {
-            width: 35px;
-            height: 35px;
-            font-size: 0.8rem;
-        }
-
-        .testimonial-info h4 {
-            font-size: 0.85rem;
-            margin-bottom: 2px;
-            color: var(--grey-800);
-            font-weight: 600;
-        }
-
-        .testimonial-info p {
-            font-size: 0.75rem;
-            color: var(--grey-600);
-        }
-
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-xl);
-        }
-
-        .slider-dots {
-            display: flex;
-            gap: var(--spacing-sm);
-        }
-
-        .slider-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--grey-300);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .slider-dot.active {
-            background: var(--primary-blue);
-            transform: scale(1.2);
-        }
-
-        .slider-arrow {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s ease;
-            color: var(--grey-800);
-        }
-
-        .slider-arrow:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .slider-arrow:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: var(--spacing-xxl) var(--spacing-xl);
-            background: var(--white);
-            position: relative;
-        }
-
-        .faq-grid {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: var(--spacing-lg);
-            border-bottom: 1px solid var(--grey-200);
-            padding-bottom: var(--spacing-lg);
-        }
-
-        .faq-question {
-            font-size: 1.25rem;
-            color: var(--grey-800);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-answer {
-            color: var(--grey-600);
-            line-height: 1.6;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--grey-900);
-            color: var(--white);
-            padding: var(--spacing-xxl) var(--spacing-xl);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .footer-column h3 {
-            color: var(--white);
-            margin-bottom: var(--spacing-lg);
-            font-size: 1.25rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-link {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .footer-link a {
-            color: var(--grey-400);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: var(--spacing-xl) auto 0;
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--grey-800);
-            text-align: center;
-            color: var(--grey-400);
-        }
-
-        .social-links {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-md);
-        }
-
-        .social-link {
-            color: var(--grey-400);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: var(--white);
-        }
-
-        /* Navigation */
-        .nav {
+        /* Navigation Styles */
+        .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: var(--spacing-md) var(--spacing-xl);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav.scrolled {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-soft);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
-        .nav-content {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -519,414 +29,319 @@
         .nav-logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--white);
+            color: #4a90e2;
             text-decoration: none;
-        }
-
-        .nav.scrolled .nav-logo {
-            color: var(--primary-blue);
         }
 
         .nav-links {
             display: flex;
-            gap: var(--spacing-lg);
+            gap: 2rem;
             align-items: center;
         }
 
-        .nav-link {
-            color: var(--white);
+        .nav-links a {
+            color: #2c3e50;
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .nav.scrolled .nav-link {
-            color: var(--grey-800);
+        .nav-links a:hover {
+            color: #4a90e2;
         }
 
-        .nav-link:hover {
-            opacity: 0.8;
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
-        /* Responsive Design */
+        /* Landing Page Specific Styles */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px; /* Add padding for fixed navbar */
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero-text {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .features-section {
+            padding: 6rem 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #4a90e2;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            padding: 6rem 2rem;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #4a90e2;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #4a90e2;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #6c757d;
+        }
+
         @media (max-width: 768px) {
-            .hero-content {
+            .hero-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding-top: 80px;
             }
 
-            .hero-cta {
+            .hero-text {
+                padding-right: 0;
+            }
+
+            .hero-buttons {
                 justify-content: center;
+            }
+
+            .hero-image {
+                margin-top: 2rem;
             }
 
             .hero-title {
                 font-size: 2.5rem;
             }
 
-            .nav-links {
-                display: none;
+            .section-title {
+                font-size: 2rem;
             }
 
             .cta-title {
                 font-size: 2rem;
             }
-
-            .testimonial-card {
-                min-width: 280px;
-            }
-        }
-
-        /* Animation Classes */
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: var(--spacing-xxl) var(--spacing-xl);
-            background: var(--gradient-primary);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin: 0 auto;
-            max-width: 1200px;
-            border-radius: 20px;
-            margin-top: var(--spacing-xxl);
-            margin-bottom: var(--spacing-xxl);
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            opacity: 0.1;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            padding: 0 var(--spacing-xl);
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-content">
-            <a href="#" class="nav-logo">TaskNexus</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">TaskNexus</a>
             <div class="nav-links">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="pages/login.html" class="nav-link">Login</a>
-                <a href="pages/register.html" class="btn btn-primary">Get Started</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-buttons">
+                <a href="pages/login.php" class="btn btn-secondary">Sign In</a>
+                <a href="pages/register.php" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-section">
         <div class="hero-content">
-            <div class="hero-text fade-in">
-                <h1 class="hero-title">Transform Your Task Management</h1>
-                <p class="hero-subtitle">Experience the future of productivity with TaskNexus. Smart task organization, real-time insights, and powerful analytics to boost your efficiency.</p>
-                <div class="hero-cta">
-                    <a href="pages/register.html" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        Start Free Trial
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        <i class="fas fa-info-circle"></i>
-                        Learn More
-                    </a>
+            <div class="hero-text">
+                <h1 class="hero-title">Task Management Made Simple</h1>
+                <p class="hero-subtitle">Organize your tasks, boost productivity, and achieve your goals with TaskNexus. The intuitive task management platform designed for modern teams.</p>
+                <div class="hero-buttons">
+                    <a href="pages/register.php" class="btn btn-primary">Get Started</a>
+                    <a href="pages/login.php" class="btn btn-secondary">Sign In</a>
                 </div>
-            </div>
-            <div class="hero-image fade-in">
-                <img src="/assets/images/Hero.png" alt="TaskNexus Dashboard Preview">
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="section-header fade-in">
-            <h2 class="section-title">Powerful Features</h2>
-            <p class="section-subtitle">Everything you need to manage your tasks efficiently and boost your productivity</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-tasks"></i>
+    <section class="features-section">
+        <div class="features-container">
+            <h2 class="section-title">Why Choose TaskNexus?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="feature-title">Task Organization</h3>
+                    <p class="feature-description">Easily create, organize, and prioritize your tasks with our intuitive interface. Keep everything in one place and never miss a deadline.</p>
                 </div>
-                <h3 class="feature-title">Smart Task Management</h3>
-                <p class="feature-description">Organize tasks with priority levels, deadlines, and custom categories for better workflow management.</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Progress Tracking</h3>
+                    <p class="feature-description">Monitor your progress with detailed analytics and insights. Stay on top of your productivity and make data-driven decisions.</p>
                 </div>
-                <h3 class="feature-title">Efficiency Tracking</h3>
-                <p class="feature-description">Monitor your productivity with detailed analytics and performance metrics.</p>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <h3 class="feature-title">Priority Organization</h3>
-                <p class="feature-description">Automatically sort and prioritize tasks based on importance and deadlines.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="section-header fade-in">
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">Choose the plan that's right for you</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card fade-in">
-                <div class="pricing-header">
-                    <h3 class="pricing-title">Free</h3>
-                    <div class="pricing-price">$0</div>
-                    <div class="pricing-period">forever</div>
-                </div>
-                <div class="pricing-features">
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Up to 10 tasks</span>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
                     </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Basic analytics</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>1 user</span>
-                    </div>
-                </div>
-                <a href="pages/register.html" class="btn btn-primary">Get Started</a>
-            </div>
-            <div class="pricing-card fade-in">
-                <div class="pricing-header">
-                    <h3 class="pricing-title">Pro</h3>
-                    <div class="pricing-price">$9</div>
-                    <div class="pricing-period">per month</div>
-                </div>
-                <div class="pricing-features">
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Unlimited tasks</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Advanced analytics</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Up to 5 users</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Priority support</span>
-                    </div>
-                </div>
-                <a href="pages/register.html" class="btn btn-primary">Start Free Trial</a>
-            </div>
-            <div class="pricing-card fade-in">
-                <div class="pricing-header">
-                    <h3 class="pricing-title">Enterprise</h3>
-                    <div class="pricing-price">$29</div>
-                    <div class="pricing-period">per month</div>
-                </div>
-                <div class="pricing-features">
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Unlimited everything</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Custom integrations</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>Unlimited users</span>
-                    </div>
-                    <div class="pricing-feature">
-                        <i class="fas fa-check"></i>
-                        <span>24/7 support</span>
-                    </div>
-                </div>
-                <a href="pages/register.html" class="btn btn-primary">Contact Sales</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-header fade-in">
-            <h2 class="section-title">Our Team Members</h2>
-            <p class="section-subtitle">Meet the talented developers behind TaskNexus</p>
-        </div>
-        <div class="testimonials-grid">
-            <div class="testimonials-track">
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "TaskNexus has been an incredible journey of learning and collaboration."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">JJ</div>
-                        <div class="testimonial-info">
-                            <h4>JOZBERT JAMES BHOYI</h4>
-                            <p>BCS/28164/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "The development process has been challenging yet exciting."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">AM</div>
-                        <div class="testimonial-info">
-                            <h4>ALFRED G MBILINYI</h4>
-                            <p>BCS/28565/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "Collaborating on TaskNexus has taught us valuable lessons."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">KB</div>
-                        <div class="testimonial-info">
-                            <h4>KHALIFA A BAKAR</h4>
-                            <p>BCS/27681/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "The combination of our diverse skills has been rewarding."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">TG</div>
-                        <div class="testimonial-info">
-                            <h4>MARY A UDHIA</h4>
-                            <p>BCS/29737/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "Working on TaskNexus has been a great opportunity."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">SK</div>
-                        <div class="testimonial-info">
-                            <h4>SEIF KHAMIS HAJI</h4>
-                            <p>BCS/27498/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "The project has helped us develop both technical skills."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">MU</div>
-                        <div class="testimonial-info">
-                            <h4>THOMASO GOLSON</h4>
-                            <p>BCS/28123/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-content">
-                        "TaskNexus represents our collective effort."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">NS</div>
-                        <div class="testimonial-info">
-                            <h4>NDILA A SAMWELI</h4>
-                            <p>BCS/27586/2301/DT</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-controls">
-                <button class="slider-arrow prev" aria-label="Previous slide">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="slider-dots"></div>
-                <button class="slider-arrow next" aria-label="Next slide">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="section-header fade-in">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Find answers to common questions about TaskNexus</p>
-        </div>
-        <div class="faq-grid">
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    What is TaskNexus?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    TaskNexus is an intelligent task management platform that helps you organize, prioritize, and track your tasks with efficiency scoring and real-time insights.
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    How does the efficiency scoring work?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Our efficiency scoring system analyzes your task completion patterns, deadlines, and priorities to provide insights into your productivity and suggest improvements.
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    Can I use TaskNexus with my team?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Yes! TaskNexus offers team collaboration features in our Pro and Enterprise plans, allowing you to share tasks, track progress, and manage projects together.
-                </div>
-            </div>
-            <div class="faq-item fade-in">
-                <div class="faq-question">
-                    Is my data secure?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Absolutely. We take data security seriously and implement industry-standard encryption and security measures to protect your information.
+                    <h3 class="feature-title">Smart Notifications</h3>
+                    <p class="feature-description">Get timely reminders and notifications for upcoming deadlines and important tasks. Stay informed and never miss a beat.</p>
                 </div>
             </div>
         </div>
@@ -934,53 +349,48 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <div class="cta-content fade-in">
+        <div class="cta-container">
             <h2 class="cta-title">Ready to Boost Your Productivity?</h2>
-            <p class="cta-description">Join thousands of users who are already managing their tasks more efficiently with TaskNexus.</p>
-            <a href="pages/register.html" class="btn btn-primary">
-                <i class="fas fa-rocket"></i>
-                Start Free Trial
-            </a>
+            <p class="cta-description">Join thousands of users who have transformed their task management with TaskNexus.</p>
+            <div class="cta-buttons">
+                <a href="pages/register.php" class="btn btn-primary">Start Free Trial</a>
+                <a href="#" class="btn btn-secondary">Learn More</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
+        <div class="footer-container">
             <div class="footer-column">
                 <h3>TaskNexus</h3>
-                <p>Transform your task management with intelligent efficiency tracking and powerful analytics.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                </div>
+                <p>Making task management simple and efficient for teams and individuals.</p>
             </div>
             <div class="footer-column">
-                <h3>Product</h3>
+                <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li class="footer-link"><a href="#features">Features</a></li>
-                    <li class="footer-link"><a href="#pricing">Pricing</a></li>
-                    <li class="footer-link"><a href="#testimonials">Testimonials</a></li>
-                    <li class="footer-link"><a href="#faq">FAQ</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Support</a></li>
                 </ul>
             </div>
             <div class="footer-column">
-                <h3>Company</h3>
+                <h3>Resources</h3>
                 <ul class="footer-links">
-                    <li class="footer-link"><a href="#">About Us</a></li>
-                    <li class="footer-link"><a href="#">Careers</a></li>
-                    <li class="footer-link"><a href="#">Blog</a></li>
-                    <li class="footer-link"><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Webinars</a></li>
+                    <li><a href="#">Community</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Legal</h3>
                 <ul class="footer-links">
-                    <li class="footer-link"><a href="#">Privacy Policy</a></li>
-                    <li class="footer-link"><a href="#">Terms of Service</a></li>
-                    <li class="footer-link"><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">GDPR</a></li>
                 </ul>
             </div>
         </div>
@@ -988,131 +398,5 @@
             <p>&copy; 2024 TaskNexus. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // Navigation scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Check if user is logged in
-        window.onload = function() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn === 'true') {
-                window.location.href = 'pages/dashboard.html';
-            }
-        }
-
-        // Intersection Observer for fade-in animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        });
-
-        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                faqItem.classList.toggle('active');
-            });
-        });
-
-        // Team Members Slider
-        const track = document.querySelector('.testimonials-track');
-        const cards = document.querySelectorAll('.testimonial-card');
-        const prevButton = document.querySelector('.slider-arrow.prev');
-        const nextButton = document.querySelector('.slider-arrow.next');
-        const dotsContainer = document.querySelector('.slider-dots');
-        
-        let currentIndex = 0;
-        const cardsPerView = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 4 : 5;
-        const totalSlides = 3; // Fixed number of slides
-
-        // Create exactly three dots
-        for (let i = 0; i < 3; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('slider-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-
-        function updateSlider() {
-            const offset = currentIndex * -100;
-            track.style.transform = `translateX(${offset}%)`;
-            
-            // Update dots
-            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-
-            // Update buttons
-            prevButton.disabled = currentIndex === 0;
-            nextButton.disabled = currentIndex === totalSlides - 1;
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateSlider();
-        }
-
-        prevButton.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlider();
-            }
-        });
-
-        nextButton.addEventListener('click', () => {
-            if (currentIndex < totalSlides - 1) {
-                currentIndex++;
-                updateSlider();
-            }
-        });
-
-        // Auto-advance slides every 5 seconds
-        let slideInterval = setInterval(() => {
-            if (currentIndex < totalSlides - 1) {
-                currentIndex++;
-            } else {
-                currentIndex = 0;
-            }
-            updateSlider();
-        }, 5000);
-
-        // Pause auto-advance on hover
-        track.addEventListener('mouseenter', () => clearInterval(slideInterval));
-        track.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(() => {
-                if (currentIndex < totalSlides - 1) {
-                    currentIndex++;
-                } else {
-                    currentIndex = 0;
-                }
-                updateSlider();
-            }, 5000);
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            const newCardsPerView = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 4 : 5;
-            if (newCardsPerView !== cardsPerView) {
-                location.reload();
-            }
-        });
-
-        // Initialize slider
-        updateSlider();
-    </script>
 </body>
 </html> 
